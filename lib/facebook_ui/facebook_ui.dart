@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'widgets/circle_btn.dart';
+
 class FacebookUi extends StatelessWidget {
   const FacebookUi({super.key});
 
@@ -21,16 +23,26 @@ class FacebookUi extends StatelessWidget {
           color: Colors.blueAccent,
         ),
         actions: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
-            child: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-          )
+          CircleBtn(
+            color: const Color(0XFFBFBFBF),
+            icon: Icons.search,
+          ),
+          SizedBox(width: 15),
+          CircleBtn(
+            color: const Color(0XFFFE7574),
+            icon: Icons.add_alert,
+          ),
+          SizedBox(width: 15),
+          CircleBtn(
+            color: const Color(0XFF7BBAFF),
+            icon: Icons.people,
+          ),
+          SizedBox(width: 15),
+          CircleBtn(
+            color: const Color(0XFF1C86E4),
+            icon: Icons.message,
+          ),
+          SizedBox(width: 15),
         ],
       ),
     );

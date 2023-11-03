@@ -36,6 +36,7 @@ class FacebookUi extends StatelessWidget {
           CircleBtn(
             color: const Color(0XFF7BBAFF),
             icon: Icons.people,
+            showBadge: true,
           ),
           SizedBox(width: 15),
           CircleBtn(

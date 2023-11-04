@@ -16,10 +16,12 @@ class WhatIsOnYourMind extends StatelessWidget {
           img: 'assets/users/My.jpg',
         ),
         SizedBox(width: 20),
-        Text(
-          "What's on your mind, reis?",
-          style: TextStyle(
-            color: Colors.grey,
+        Flexible(
+          child: Text(
+            "What's on your mind, reis?",
+            style: TextStyle(
+              color: Colors.grey,
+            ),
           ),
         ),
       ],

@@ -7,24 +7,33 @@ class QuickActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        QuickBtn(
-          label: 'Gallery',
-          color: Color(0XFF92BE87),
-          icon: Icons.photo_library_outlined,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: Row(
+          children: [
+            QuickBtn(
+              label: 'Gallery',
+              color: const Color(0XFF92BE87),
+              icon: Icons.photo_library_outlined,
+            ),
+            const SizedBox(width: 15),
+            QuickBtn(
+              label: 'Tag Friends',
+              color: const Color(0XFF2880D4),
+              icon: Icons.people_rounded,
+            ),
+            const SizedBox(width: 15),
+            QuickBtn(
+              label: 'Live',
+              color: const Color(0XFFFB7171),
+              icon: Icons.video_camera_back_rounded,
+            ),
+          ],
         ),
-        QuickBtn(
-          label: 'Tag Friends',
-          color: Color(0XFF2880D4),
-          icon: Icons.people_rounded,
-        ),
-        QuickBtn(
-          label: 'Live',
-          color: Color(0XFFFB7171),
-          icon: Icons.video_camera_back_rounded,
-        ),
-      ],
+      ),
     );
   }
 }
@@ -50,6 +59,7 @@ class QuickBtn extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           CircleBtn(
             color: color.withOpacity(0.7),

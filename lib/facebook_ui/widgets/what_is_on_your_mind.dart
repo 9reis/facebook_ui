@@ -9,22 +9,25 @@ class WhatIsOnYourMind extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Avatar(
-          size: 50,
-          img: 'assets/users/My.jpg',
-        ),
-        SizedBox(width: 20),
-        Flexible(
-          child: Text(
-            "What's on your mind, reis?",
-            style: TextStyle(
-              color: Colors.grey,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: const Row(
+        children: [
+          Avatar(
+            size: 50,
+            img: 'assets/users/My.jpg',
+          ),
+          SizedBox(width: 20),
+          Flexible(
+            child: Text(
+              "What's on your mind, reis?",
+              style: TextStyle(
+                color: Colors.grey,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

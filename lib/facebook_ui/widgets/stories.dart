@@ -1,5 +1,8 @@
-import 'package:facebook_ui/models/story.dart';
 import 'package:flutter/material.dart';
+
+import 'package:facebook_ui/models/story.dart';
+
+import 'story_item.dart';
 
 final _stories = [
   Story(
@@ -34,17 +37,15 @@ class Stories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 170,
+      height: 160,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: _stories.length,
         itemBuilder: (_, i) {
           final story = _stories[i];
-          return Container(
-            margin: EdgeInsets.symmetric(horizontal: 5),
-            width: 80,
-            height: double.infinity,
-            color: Colors.grey,
+          return StoryItem(
+            story: story,
+            isFirst: i == 0,
           );
         },
       ),

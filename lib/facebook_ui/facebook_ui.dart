@@ -1,5 +1,7 @@
 import 'package:facebook_ui/facebook_ui/widgets/quick_actions.dart';
 import 'package:facebook_ui/facebook_ui/widgets/stories.dart';
+import 'package:facebook_ui/models/publication.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,6 +14,29 @@ class FacebookUi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final faker = Faker();
+
+    final List<Publication> publications = [];
+
+    for (int i = 0; i < 50; i++) {
+      final random = faker.randomGenerator;
+      const reactions = Reaction.values;
+      final reactionIndex = reactions.length - 1;
+
+      final publication = Publication(
+        title: faker.lorem.sentence(),
+        createdAt: faker.date.dateTime(),
+        imgURL: faker.image.image(),
+        commentsCount: random.integer(50000),
+        sharesCount: random.integer(50000),
+        user: User(
+          avatar: faker.image.image(),
+          username: faker.person.name(),
+        ),
+        userCurrentReaction: reactions[random.integer(reactionIndex)],
+      );
+      publications.add(publication);
+    }
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(

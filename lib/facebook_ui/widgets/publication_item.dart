@@ -1,20 +1,59 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:facebook_ui/facebook_ui/widgets/avatar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:facebook_ui/models/publication.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class PublicationItem extends StatelessWidget {
-  final Publication piblication;
+  final Publication publication;
 
   const PublicationItem({
     Key? key,
-    required this.piblication,
+    required this.publication,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      color: Colors.grey,
+    const padding = EdgeInsets.symmetric(
+      horizontal: 20,
+      vertical: 10,
+    );
+
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: padding,
+            child: Row(
+              children: [
+                const Avatar(
+                  size: 38,
+                  img: 'assets/users/6.jpg',
+                ),
+                const SizedBox(width: 10),
+                Text(publication.user.username),
+                const Spacer(),
+                Text(
+                  timeago.format(publication.createdAt),
+                ),
+              ],
+            ),
+          ),
+          CachedNetworkImage(
+            imageUrl: publication.imgURL,
+            width: double.infinity,
+            height: 180,
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: padding.copyWith(top: 15),
+            child: Text(publication.title),
+          ),
+        ],
+      ),
     );
   }
 }

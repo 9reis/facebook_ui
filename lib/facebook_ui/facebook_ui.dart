@@ -1,3 +1,4 @@
+import 'package:facebook_ui/facebook_ui/widgets/publication_item.dart';
 import 'package:facebook_ui/facebook_ui/widgets/quick_actions.dart';
 import 'package:facebook_ui/facebook_ui/widgets/stories.dart';
 import 'package:facebook_ui/models/publication.dart';
@@ -74,13 +75,23 @@ class FacebookUi extends StatelessWidget {
         ],
       ),
       body: ListView(
-        children: const [
-          SizedBox(height: 10),
-          WhatIsOnYourMind(),
-          SizedBox(height: 30),
-          QuickActions(),
-          SizedBox(height: 30),
-          Stories(),
+        children: [
+          const SizedBox(height: 10),
+          const WhatIsOnYourMind(),
+          const SizedBox(height: 30),
+          const QuickActions(),
+          const SizedBox(height: 30),
+          const Stories(),
+          const SizedBox(height: 20),
+          ListView.builder(
+            shrinkWrap: true,
+            // O scroll do filho vai ser controlado pelo pai
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: publications.length,
+            itemBuilder: (context, index) => PublicationItem(
+              publication: publications[index],
+            ),
+          ),
         ],
       ),
     );

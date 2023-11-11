@@ -40,6 +40,14 @@ class PublicationItem extends StatelessWidget {
       }
     }
 
+    String _formatCount(int value) {
+      if (value <= 1000) {
+        return value.toString();
+      } else {
+        return "${(value / 1000).toStringAsFixed(1)}k";
+      }
+    }
+
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -72,21 +80,65 @@ class PublicationItem extends StatelessWidget {
             padding: padding.copyWith(top: 15),
             child: Text(publication.title),
           ),
-          Row(
-            children: [
-              ...List.generate(
-                reactions.length,
-                (index) {
-                  final reaction = reactions[index];
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(
+              bottom: 10,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    ...List.generate(
+                      reactions.length,
+                      (index) {
+                        final reaction = reactions[index];
+                        final isActive =
+                            reaction == publication.userCurrentReaction;
 
-                  return SvgPicture.asset(
-                    _getEmojiPath(reaction),
-                    height: 30,
-                    width: 30,
-                  );
-                },
-              ),
-            ],
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 7),
+                          child: Column(
+                            children: [
+                              SvgPicture.asset(
+                                _getEmojiPath(reaction),
+                                height: 25,
+                                width: 25,
+                              ),
+                              SizedBox(height: 3),
+                              Icon(
+                                Icons.circle,
+                                color: isActive
+                                    ? Colors.redAccent
+                                    : Colors.transparent,
+                                size: 5,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(width: 15),
+                  ],
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: FittedBox(
+                      child: Row(
+                        children: [
+                          Text(
+                              "${_formatCount(publication.commentsCount)} Comments"),
+                          const SizedBox(width: 15),
+                          Text(
+                              "${_formatCount(publication.sharesCount)} Shares")
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),

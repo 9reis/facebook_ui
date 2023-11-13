@@ -48,8 +48,16 @@ class PublicationItem extends StatelessWidget {
       }
     }
 
-    return SizedBox(
+    return Container(
       width: double.infinity,
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Color(0XFFEBEBEB),
+            width: 6,
+          ),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,15 +78,22 @@ class PublicationItem extends StatelessWidget {
               ],
             ),
           ),
-          CachedNetworkImage(
-            imageUrl: publication.imgURL,
-            width: double.infinity,
-            height: 180,
-            fit: BoxFit.cover,
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: CachedNetworkImage(
+              imageUrl: publication.imgURL,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
           ),
           Padding(
             padding: padding.copyWith(top: 15),
-            child: Text(publication.title),
+            child: Text(
+              publication.title,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class Avatar extends StatelessWidget {
@@ -15,7 +16,7 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fromNetwork = img.startsWith('http://') || img.startsWith('https://');
-    final imgProvider = fromNetwork ? NetworkImage(img) : AssetImage(img);
+    final imgProvider = fromNetwork ? CachedNetworkImageProvider(img) : AssetImage(img);
 
     return Container(
       width: size,

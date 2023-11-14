@@ -14,17 +14,9 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Center(
-    //   child: ClipRRect(
-    //     borderRadius: BorderRadius.circular(size * 0.5),
-    //     child: Image.asset(
-    //       img,
-    //       width: size,
-    //       height: size,
-    //       fit: BoxFit.cover,
-    //     ),
-    //   ),
-    // );
+    final fromNetwork = img.startsWith('http://') || img.startsWith('https://');
+    final imgProvider = fromNetwork ? NetworkImage(img) : AssetImage(img);
+
     return Container(
       width: size,
       height: size,
@@ -35,8 +27,8 @@ class Avatar extends StatelessWidget {
           color: Colors.white,
         ),
         image: DecorationImage(
-          image: AssetImage(img),
-          fit: BoxFit.contain,
+          image: imgProvider as ImageProvider,
+          fit: BoxFit.cover,
         ),
       ),
     );
